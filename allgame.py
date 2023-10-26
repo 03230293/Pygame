@@ -187,5 +187,78 @@ def game(
 		screen.blit(score1, (width - 120, height - 40))
 		screen.blit(exit2, (width - 80, 0))
 		pygame.display.update()
+def intro(
+	colox_c1,
+	colox_c2,
+	colox,
+	exit1,
+	text1,
+	text,
+	):
+	intro = True
+	while intro:
+		for event in pygame.event.get():
+			if event.type == pygame.QUIT:
+				pygame.quit()
+		screen.fill((65, 25, 64))
+		mouse = pygame.mouse.get_pos()
+
+		if x < mouse[0] < x + width1 and y < mouse[1] < y + height1:
+			
+			pygame.draw.rect(screen, startl, [x, y, width1, height1])
+		else:
+			if x < mouse[0] < x + width1 + 40 and y + 70 < mouse[1] < y \
+				+ 70 + height1:
+				pygame.draw.rect(screen, startl, [x, y + 70, width1+40,height1])
+			else:
+
+				if x < mouse[0] < width1 + x and y + 140 < mouse[1] < y + 140 + height1:
+					pygame.draw.rect(screen, startl, [x, y + 140,width1,height1])
+				else:
+					pygame.draw.rect(screen, startd, [x, y, width1,height1])
+					pygame.draw.rect(screen, startd, [x, y + 70, width1
+							+ 40, height1])
+					pygame.draw.rect(screen, startd, [x, y + 140,width1, height1])
+
+		if event.type == pygame.MOUSEBUTTONDOWN:
+			if x < mouse[0] < x + width1 and y < mouse[1] < y + height1:
+				game(lead_y, lead_x, speed, count)
+
+		if event.type == pygame.MOUSEBUTTONDOWN:
+			if x < mouse[0] < width1 + x and y + 140 < mouse[1] < y + 140 + height1:
+				pygame.quit()
+
+		if 0 <= colox_c1 <= 254 or 0 <= colox_c2 <= 254:
+			colox_c1 += 1
+			colox_c2 += 1
+		if colox_c1 >= 254 or colox_c2 >= 254:
+			colox_c1 = c3
+			colox_c2 = c3
+
+		pygame.draw.rect(screen, (c2, colox_c1, colox_c2), [0, 0, 40,
+						height])
+		pygame.draw.rect(screen, (c2, colox_c1, colox_c2), [width - 40,
+						0, 40, height])
+		smallfont = pygame.font.SysFont('Corbel', 35)
+
+		text = smallfont.render('Start', True, white)
+		text1 = smallfont.render('Options', True, white)
+		exit1 = smallfont.render('Exit', True, white)
+		colox = smallfont.render('Colox', True, (c1, colox_c1,
+								colox_c2))
+		screen.blit(colox, (312, 50))
+		screen.blit(text, (312, 295))
+		screen.blit(text1, (312, 365))
+		screen.blit(exit1, (312, 435))
+		screen.blit(sig, (320, height - 50))
+		clock.tick(60)
+		pygame.display.update()
 		
-        
+intro(
+	colox_c1,
+	colox_c2,
+	colox,
+	exit1,
+	text1,
+	text,
+	)
