@@ -6,4 +6,5 @@ pygame.init()
 pygame.display.set_mode((300,200))
 #Changing screen background color:
 colour = (5,46,255)
+fill="black"
 pygame.surface.fill(colour)

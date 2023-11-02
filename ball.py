@@ -1,6 +1,6 @@
 # Released under the GNU General Public License
 
-VERSION = "0.4"
+# VERSION = "0.4"
 try:
     import sys
     import random
